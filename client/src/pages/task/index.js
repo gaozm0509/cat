@@ -81,7 +81,7 @@ export default class Index extends Taro.Component {
         let skills = ['打滚', '喵喵', '捉老鼠', '玩耍']
         let skillView = skills.map((item, index) => {
             return (
-                <Text className='selectReset skillText' onClick={this.skillClick.bind(this, index)}>{item}</Text>
+                <Text key={index} className='selectReset skillText' onClick={this.skillClick.bind(this, index)}>{item}</Text>
             )
         })
         return (

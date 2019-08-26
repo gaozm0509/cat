@@ -50,7 +50,7 @@ export default class Index extends Taro.Component {
     render() {
         let listView = this.state.data.map((item, index) => {
             return (
-                <View className='item' onClick={this.itemClick}>
+                <View className='item' onClick={this.itemClick} key = {index}>
                     <View className='left'>
                         <Image src={item.avatar} className='avatar' />
                         <View className='left-right'>

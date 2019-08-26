@@ -1,0 +1,65 @@
+.index {
+  width: 100%;
+  height: 100%;
+  //   height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .selectImage {
+    margin-top: 40px;
+    width: 400px;
+    height: 400px;
+  }
+  .selectImageTouch {
+    animation: selectImage-animation 1s forwards;
+  }
+  @keyframes selectImage-animation {
+    0% {
+      transform: scale3d(1.3, 1.3, 1.3);
+    }
+    25% {
+      transform: scale3d(0.8, 0.8, 0.8);
+    }
+    50% {
+      transform: scale3d(1.2, 1.2, 1.2);
+    }
+    75% {
+      transform: scale3d(0.9, 0.9, 0.9);
+    }
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  .selectDes {
+    margin-top: 50px;
+  }
+  .selectReset {
+    position: fixed;
+    bottom: 30px;
+  }
+  .nearby {
+    position: fixed;
+    bottom: 150px;
+  }
+  .des {
+    margin-top: 80px;
+    display: block;
+    width: 90%;
+    line-height: 40px;
+    color: #000;
+    font-size: 28px;
+    word-break: break-all;
+  } // des
+  .goQa {
+    margin-top: 50px;
+    display: block;
+    text-align: center;
+    line-height: 88px;
+    height: 88px;
+    width: 90%;
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+    background: linear-gradient(to right, #000, #eeeeee);
+  } //gaqa
+} //idnex

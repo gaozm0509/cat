@@ -1,0 +1,67 @@
+.index {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .selectImage {
+    width: 400px;
+    height: 400px;
+  }
+  .selectImageTouch {
+    animation: selectImage-animation 1s forwards;
+  }
+  @keyframes selectImage-animation {
+    0% {
+      transform: scale3d(1.3, 1.3, 1.3);
+    }
+    25% {
+      transform: scale3d(0.8, 0.8, 0.8);
+    }
+    50% {
+      transform: scale3d(1.2, 1.2, 1.2);
+    }
+    75% {
+      transform: scale3d(0.9, 0.9, 0.9);
+    }
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  .currFeelingCount {
+    text-align: center;
+  }
+
+  .selectReset {
+    display: block;
+    text-align: center;
+    line-height: 88px;
+    height: 88px;
+    width: 90%;
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+    background: linear-gradient(to right, #000, #eeeeee);
+  }
+
+  .skillView {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 710px;
+    .skillText {
+      margin-top: 20px;
+      width: 250px;
+    }
+  }
+  .selectDes {
+    display: block;
+    margin-top: 50px;
+    font-size: 26px;
+    color: #888888;
+    max-width: 710px;
+  }
+}

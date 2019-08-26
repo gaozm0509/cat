@@ -1,0 +1,15 @@
+.index {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loginButton {
+      width: 90%;
+      height: 88px;
+      border-radius: 10px;
+      background-color: #000;
+      background: linear-gradient(to right,#000,#eeeeee);
+      color: white;
+  }
+}

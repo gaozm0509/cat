@@ -42,15 +42,16 @@ export default class Index extends Taro.Component {
         })
     }
 
-    itemClick = () => {
+    itemClick = (item) => {
+        let itemStr = JSON.stringify(item)
         Taro.navigateTo({
-            url: '../task/index'
+            url: '../task/index?user=' + itemStr
         })
     }
     render() {
         let listView = this.state.data.map((item, index) => {
             return (
-                <View className='item' onClick={this.itemClick} key = {index}>
+                <View className='item' onClick={this.itemClick.bind(this, item)} key={index}>
                     <View className='left'>
                         <Image src={item.avatar} className='avatar' />
                         <View className='left-right'>

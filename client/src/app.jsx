@@ -20,10 +20,12 @@ class App extends Component {
       'pages/qa/index',
       'pages/select/index',
       'pages/task/index',
+      'pages/task/chat',
       'pages/nearby/index',
       'pages/nearby/add',
       'pages/me/index',
-      'pages/friend/index'
+      'pages/friend/index',
+      
     ],
     window: {
       backgroundTextStyle: 'light',

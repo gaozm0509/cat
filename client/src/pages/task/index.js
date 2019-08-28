@@ -19,10 +19,15 @@ export default class Index extends Taro.Component {
             selectImageTouch: false,
             currFeelingCount: 0,
             isLoaded: false,
+            isChatShow: false,
+            user: {},
+            userString:''
         }
     }
 
     componentWillMount() {
+        this.state.userString = this.$router.params.user
+        this.state.user = JSON.parse(this.state.userString)
         Taro.setNavigationBarTitle({
             title: '任务'
         })
@@ -71,8 +76,24 @@ export default class Index extends Taro.Component {
         })
         this.setState({
             currFeelingCount: this.state.currFeelingCount + index + 1
+        }, () => {
+            if (this.state.currFeelingCount >= 20) {
+                Taro.showToast({
+                    title: '好感度达到20，可以去聊天',
+                    icon: 'none'
+                })
+                this.setState({
+                    isChatShow: true
+                })
+            }
         })
         this.selectImageTouch()
+    }
+
+    chat = () => {
+        Taro.navigateTo({
+            url: './chat?user=' + this.state.userString
+        })
     }
 
     render() {
@@ -95,8 +116,8 @@ export default class Index extends Taro.Component {
                     {'3、高等级可以获得更多的权益\n'}
                     {'4、。。。。。。'}
                 </Text>
-                {/* <Text className='selectReset ' onClick={this.reSet}>去做任务</Text> */}
-            </View>
+                <Text className='selectReset ' style={{ display: this.state.isChatShow ? 'blcok' : 'none' }} onClick={this.chat}>去聊天</Text>
+            </View >
         )
     }
 }

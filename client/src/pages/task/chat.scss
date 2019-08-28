@@ -1,0 +1,90 @@
+.index {
+  background-color: #efefef;
+  .historyChat {
+    padding-left: 20px;
+    padding-right: 20px;
+    // padding-top: 20px;
+    .historyItemView {
+      .historyItemViewContainer {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: row;
+        .chatView {
+          display: flex;
+          .historyItemText {
+            background-color: white;
+            margin-left: -4px;
+            border-radius: 8px;
+            min-width: 60px;
+            max-width: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text {
+              display: block;
+              font-size: 32px;
+              color: #444444;
+              // text-align: center;
+              word-wrap: break-word;
+            }
+          }
+          .historyItemTextMe {
+            background-color: #83ee4f;
+            font-size: 28px;
+            margin-right: -6px;
+          }
+          .triangle {
+            display: block;
+            margin-top: 34px;
+            width: 20px;
+            height: 20px;
+          }
+        }
+        .chatViewMe {
+        }
+        .avatar {
+          width: 88px;
+          height: 88px;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+      }
+      .historyItemViewContainerMe {
+        justify-content: flex-end;
+      }
+    }
+  } //historyChat
+
+  .historyItemViewMe {
+  }
+
+  .chatTextView {
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 722px;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: white;
+    padding-bottom: 20px;
+    .textView {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 2px solid #ededed;
+      border-bottom: 2px solid #ededed;
+      width: 88px;
+      height: 88px;
+      .text {
+        font-size: 28px;
+        color: black;
+      }
+    }
+    .textViewFirst {
+      border-left: 2px solid #ededed;
+    }
+  }
+}

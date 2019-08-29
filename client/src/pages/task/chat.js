@@ -17,7 +17,7 @@ export default class Chat extends Taro.PureComponent {
         }
     }
     componentWillMount() {
-        this.state.user = JSON.parse(this.state.userString)
+        this.state.user = JSON.parse(this.$router.params.user || '')
         Taro.setNavigationBarTitle({
             title: this.state.user.name
         })
@@ -26,6 +26,10 @@ export default class Chat extends Taro.PureComponent {
     }
 
     textItemClick = (text, isMe) => {
+        let randomIndex = Math.floor(Math.random() * 10)
+        if (randomIndex < 6) {
+            text = '喵喵~'
+        }
         let dic = {
             isMe: isMe,
             chat: text,
@@ -42,7 +46,7 @@ export default class Chat extends Taro.PureComponent {
             })
         }).exec()
 
-        let randomIndex = Math.floor(Math.random() * 10)
+
         let randomDic = {
             isMe: false,
             chat: this.state.chatList[randomIndex],

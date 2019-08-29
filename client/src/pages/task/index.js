@@ -77,9 +77,9 @@ export default class Index extends Taro.Component {
         this.setState({
             currFeelingCount: this.state.currFeelingCount + index + 1
         }, () => {
-            if (this.state.currFeelingCount >= 20) {
+            if (this.state.currFeelingCount >= 1) {
                 Taro.showToast({
-                    title: '好感度达到20，可以去聊天',
+                    title: '好感度达到1，可以去聊天',
                     icon: 'none'
                 })
                 this.setState({
@@ -108,7 +108,7 @@ export default class Index extends Taro.Component {
         return (
             <View className='index'>
                 <Image onAnimationEnd={this.animationEnd} onClick={this.selectImageTouch} src={image} className={this.state.selectImageTouch ? 'selectImage selectImageTouch' : 'selectImage'}></Image>
-                <Text className='selectDes currFeelingCount'>当前好感度{this.state.currFeelingCount}</Text>
+                <Text className='selectDes currFeelingCount'>当前好感度，互动可以提高好感度，好感度达到一定等级可以解锁更多技能{this.state.currFeelingCount}</Text>
                 <View className='skillView'>{skillView}</View>
                 <Text className='selectDes'>
                     {'1、每个技能可以提升好感度，每个技能都有CD\n'}

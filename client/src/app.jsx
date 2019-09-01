@@ -25,6 +25,7 @@ class App extends Component {
       'pages/nearby/add',
       'pages/me/index',
       'pages/friend/index',
+      'pages/integral/index'
       
     ],
     window: {

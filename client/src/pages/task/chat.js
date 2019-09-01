@@ -13,9 +13,10 @@ export default class Chat extends Taro.PureComponent {
             historyChatList: [],
             userInfo: {},
             user: {}, //聊天对象
-            chatList: ['我', '你', '好', '不', '啊', '哦', '来', '去', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '零', '😄', '😷', '😂', '😝', '😳', '😱', '😔', '😒', '👻', '🙏', '💪', '🎉', '🎁']
+            chatList: ['我', '你', '好', '不', '啊', '哦', '来', '去', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '零', '😄', '😷', '😂', '😝', '😳', '😱', '😔', '😒', '👻', '🙏', '💪', '🎉', '🎁'],
         }
     }
+
     componentWillMount() {
         this.state.user = JSON.parse(this.$router.params.user || '')
         Taro.setNavigationBarTitle({
@@ -25,7 +26,24 @@ export default class Chat extends Taro.PureComponent {
 
     }
 
+    updateIntegral = () => {
+        if (this.state.historyChatList.length != 0) {
+            return
+        }
+        let id = Taro.getStorageSync('id')
+        let db = Taro.cloud.database()
+        db.collection('users').doc(id).update({
+            data: {
+                integral: 0
+            }
+        }).then(res => {
+
+        })
+    }
+
+
     textItemClick = (text, isMe) => {
+        this.updateIntegral()
         let randomIndex = Math.floor(Math.random() * 10)
         if (randomIndex < 6) {
             text = '喵喵~'

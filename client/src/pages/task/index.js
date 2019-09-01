@@ -21,10 +21,34 @@ export default class Index extends Taro.Component {
             isLoaded: false,
             isChatShow: false,
             user: {},
-            userString:''
+            userString: '',
+            integral: 0
+
         }
     }
 
+    // componentWillMount() {
+    //     this.state.user = JSON.parse(this.$router.params.user || '')
+    //     Taro.setNavigationBarTitle({
+    //         title: this.state.user.name
+    //     })
+    //     this.state.userInfo = Taro.getStorageSync('userInfo')
+
+    // }
+
+
+    componentDidShow = () => {
+        let _this = this
+        Taro.getStorage({
+            key: 'id',
+            success: res => {
+                let db = Taro.cloud.database()
+                db.collection('users').doc(res.data).get().then(res => {
+                    _this.state.integral = res.data.integral
+                })
+            }
+        })
+    }
     componentWillMount() {
         this.state.userString = this.$router.params.user
         this.state.user = JSON.parse(this.state.userString)
@@ -90,9 +114,64 @@ export default class Index extends Taro.Component {
         this.selectImageTouch()
     }
 
+    choseImage = () => {
+        Taro.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: res => {
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                var tempFilePaths = res.tempFilePaths
+                this.addIntegral()
+            }
+        })
+    }
+    addIntegral = () => {
+        let id = Taro.getStorageSync('id')
+        let db = Taro.cloud.database()
+        db.collection('users').doc(id).update({
+            data: {
+                integral: 10
+            }
+        }).then(res => {
+            Taro.showLoading({
+                title: '审核中。。。',
+
+            })
+            setTimeout(() => {
+                Taro.hideLoading()
+                Taro.showToast({
+                    title: '审核通过，可以去愉快的聊天了',
+                    icon: 'none',
+                    success: res => {
+                        this.setState({
+                            integral: 10
+                        })
+                    }
+                })
+            }, 3000);
+
+        })
+    }
+
+
     chat = () => {
-        Taro.navigateTo({
-            url: './chat?user=' + this.state.userString
+        if (this.state.integral >= 10) {
+            Taro.navigateTo({
+                url: './chat?user=' + this.state.userString
+            })
+            return
+        }
+        Taro.showModal({
+            title: '提示',
+            content: '积分不足，上传小票，获取积分',
+            success: res => {
+                if (res.confirm) {
+                    this.choseImage()
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                }
+            }
         })
     }
 
